@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Settlement_Line_Type__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Settlement Line Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Expense</fullName>
+                <default>true</default>
+                <label>Expense</label>
+            </value>
+            <value>
+                <fullName>Damage</fullName>
+                <default>false</default>
+                <label>Damage</label>
+            </value>
+            <value>
+                <fullName>Lien</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Lien</label>
+            </value>
+            <value>
+                <fullName>Medical Bill</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Medical Bill</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

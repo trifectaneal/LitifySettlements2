@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>SettlementCalculatorController</members>
+        <members>SettlementCalculatorControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>CollapsibleSection</members>
+        <members>SettlementCalculator</members>
+        <members>SettlementDataChange</members>
+        <members>SettlementDataTable</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>litify_pm__Damage__c.Balance_Due__c</members>
+        <members>litify_pm__Damage__c.Provider_Name_Text__c</members>
+        <members>litify_pm__Damage__c.Total_Payments_Reductions__c</members>
+        <members>litify_pm__Expense__c.Balance_Due__c</members>
+        <members>litify_pm__Expense__c.Expense_Type_Name__c</members>
+        <members>litify_pm__Expense__c.Total_Payments_Reductions__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Settlement_Calculator_Field.Damage_Amount</members>
+        <members>Settlement_Calculator_Field.Damage_Balance_Due</members>
+        <members>Settlement_Calculator_Field.Damage_Payment_Comment</members>
+        <members>Settlement_Calculator_Field.Damage_Payment_Date</members>
+        <members>Settlement_Calculator_Field.Damage_Provider_Name</members>
+        <members>Settlement_Calculator_Field.Expense_Amount</members>
+        <members>Settlement_Calculator_Field.Expense_Balance_Due</members>
+        <members>Settlement_Calculator_Field.Expense_Expense_Description</members>
+        <members>Settlement_Calculator_Field.Expense_Expense_Type</members>
+        <members>Settlement_Calculator_Field.Expense_Payment_Comment</members>
+        <members>Settlement_Calculator_Field.Expense_Payment_Date</members>
+        <members>Settlement_Line_Field_Mapping.Damage_Amount</members>
+        <members>Settlement_Line_Field_Mapping.Damage_Balance_Due</members>
+        <members>Settlement_Line_Field_Mapping.Damage_Id</members>
+        <members>Settlement_Line_Field_Mapping.Damage_Provider</members>
+        <members>Settlement_Line_Field_Mapping.Expense_Amount</members>
+        <members>Settlement_Line_Field_Mapping.Expense_Balance_Due</members>
+        <members>Settlement_Line_Field_Mapping.Expense_Description</members>
+        <members>Settlement_Line_Field_Mapping.Expense_Id</members>
+        <members>Settlement_Line_Field_Mapping.Expense_Type</members>
+        <members>Settlement_Object.Damage</members>
+        <members>Settlement_Object.Expense</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>Attorney_Fee_Split__c</members>
+        <members>Damage_Payment_Reduction__c</members>
+        <members>Expense_Payment_Reduction__c</members>
+        <members>MedPay_Deposit__c</members>
+        <members>Settlement_Calculator_Field__mdt</members>
+        <members>Settlement_Line_Field_Mapping__mdt</members>
+        <members>Settlement_Object__mdt</members>
+        <members>Settlement__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Settlement_Med_Pay_Recovery</members>
+        <members>Settlement_Non_Med_Pay1</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Calculate_Settlement_Damage_Total_Payments</members>
+        <members>Calculate_Settlement_Damage_Total_Payments-1</members>
+        <members>Calculate_Settlement_Expense_Total_Payments</members>
+        <members>Calculate_Settlement_Expense_Total_Payments-1</members>
+        <members>Calculate_Settlement_Expense_Total_Payments-2</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Calculate_Settlement_Damage_Total_Payments</members>
+        <members>Calculate_Settlement_Expense_Total_Payments</members>
+        <members>Settlement_Damage_Summary</members>
+        <members>Settlement_Expense_Summary</members>
+        <name>FlowDefinition</name>
+    </types>
+    <types>
+        <members>Attorney_Fee_Split__c-Settlement Fee Split Layout</members>
+        <members>Attorney_Fee_Split__c-Settlement Fee Split Layout-Inside Counsel</members>
+        <members>Attorney_Fee_Split__c-Settlement Fee Split Layout-Outside Counsel</members>
+        <members>Damage_Payment_Reduction__c-Damage Payment %2F Reduction Layout</members>
+        <members>Expense_Payment_Reduction__c-Payment %2F Reduction Layout</members>
+        <members>MedPay_Deposit__c-MedPay Deposit Layout</members>
+        <members>Settlement_Calculator_Field__mdt-Settlement Calculator Field Layout</members>
+        <members>Settlement_Line_Field_Mapping__mdt-Settlement Line Field Mapping Layout</members>
+        <members>Settlement_Object__mdt-Settlement Object Layout</members>
+        <members>Settlement__c-Settlement - MedPay Calculator</members>
+        <members>Settlement__c-Settlement - Medical Payment Recovery</members>
+        <members>Settlement__c-Settlement Calculator Page</members>
+        <members>Settlement__c-Settlement Layout</members>
+        <name>Layout</name>
+    </types>
+    <version>44.0</version>
+</Package>

@@ -1,0 +1,98 @@
+<aura:component controller="SettlementCalculatorController" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:hasSObjectName" access="global">
+	<aura:attribute name="settlement" type="Settlement__c"/>
+	<aura:attribute name="expenses" type="Expense_Payment_Reduction__c[]"/>
+	<aura:attribute name="damages" type="Damage_Payment_Reduction__c[]"/>
+   	<aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<aura:attribute name="totalDueAmount" type="Decimal" default="0" />
+    <aura:attribute name="totalToClient" type="Decimal" default="0" />
+    <aura:attribute name="resetSelectedRows" type="Boolean" default="false"/>
+	<aura:attribute name="expenseColumns" type="List"/>
+	<aura:attribute name="damageColumns" type="List"/>
+	<aura:attribute name="error" type="String"/>
+	<aura:attribute name="pageLayoutName" type="String" />
+    <aura:attribute name="recordTypeId" type="String" />
+	<aura:attribute name="pageLayout" type="Object" access="private" />
+	<aura:handler event="c:SettlementDataChange" action="{!c.handleDataChanged}"/>
+	
+	<div class="slds-page-header">
+			<div class="slds-grid">
+			  <div class="slds-col slds-has-flexi-truncate">
+					<div class="slds-media slds-no-space slds-grow">
+					  <div class="slds-media__figure">
+						  <lightning:icon iconName="custom:custom90" size="large" alternativeText="Settlement Calculator Detail"/>
+					  </div>
+					  <div class="slds-media__body">
+							<h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Settlement Calculator Detail">Settlement Calculator Detail</h1>
+							Select Items from the List(s) below to calculate the settlement.
+					  </div>
+					</div>
+			  </div>
+			  <div class="slds-col slds-no-flex slds-grid slds-align-top">
+					<div class="slds-button-group" role="group">
+					  <lightning:button label="Refresh" onclick="{! c.handleRefresh }" />
+					</div>
+			  </div>
+
+		  </div>
+	  </div>
+    <lightning:recordViewForm objectApiName="Settlement__c"
+                                recordId="{! v.recordId }"
+                                class="slds-card slds-p-around_medium"
+                                >
+	<lightning:messages />    
+	<aura:iteration items="{! v.pageLayout.Sections }" var="section">
+		<c:CollapsibleSection title="{! section.Label }">
+			<div class="slds-grid slds-gutters">
+				<aura:iteration items="{! section.Columns }" var="column">
+					<div class="slds-col">
+						<aura:iteration items="{! column.Fields }" var="field">
+							<lightning:outputField aura:id="{!field.APIName}" fieldName="{! field.APIName }" class="slds-p-top_small slds-m-top_medium" />
+						</aura:iteration>
+					</div>
+				</aura:iteration>
+			</div>
+		</c:CollapsibleSection>
+		<c:CollapsibleSection title="Calculated Values">
+				<div class="slds-grid slds-gutters">
+						<div class="slds-col">
+							<div class="slds-p-top_small slds-m-top_medium">
+								<label >Total Payments:</label>
+								<div >
+								<ui:outputCurrency value="{!v.totalDueAmount}" />
+								</div>
+							</div>
+						</div>
+					
+						<div class="slds-col">
+							
+								<div class="slds-p-top_small slds-m-top_medium">
+									<aura:renderIf isTrue="{!v.settlement.RecordType.DeveloperName != 'Medical_Payment_Recovery'}">
+										<label>Total Amount To Client:</label>
+									<aura:set attribute="else">
+										<label>MedPay Remaining:</label>
+									</aura:set>
+								</aura:renderIf>		
+									
+									<div>
+										<ui:outputCurrency value="{!v.totalToClient}" />
+									</div>
+								
+								</div>
+						</div>
+				</div>
+						
+			
+		</c:CollapsibleSection>
+	</aura:iteration>
+    </lightning:recordViewForm> 
+	
+	<aura:renderIf isTrue="{!v.settlement.RecordType.DeveloperName != 'Medical_Payment_Recovery'}">
+		<c:SettlementDataTable aura:id="expensetable" paymentType="Expense_Payment_Reduction__c" sourceType="litify_pm__Expense__c" label="Expenses" resetSelectedRows="{!v.resetSelectedRows}" settlementId="{!v.recordId}" keyField="Expense__c"/>
+	</aura:renderIf>
+	
+	
+	<c:SettlementDataTable aura:id="damagetable" paymentType="Damage_Payment_Reduction__c" sourceType="litify_pm__Damage__c" label="Damages" resetSelectedRows="{!v.resetSelectedRows}" settlementId="{!v.recordId}" keyField="Damage__c"/>
+	
+	
+</aura:component>

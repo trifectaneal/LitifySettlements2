@@ -1,0 +1,70 @@
+<aura:component controller="SettlementCalculatorController">
+	<aura:registerEvent name="dataChanged" type="c:SettlementDataChange"/>
+	<aura:attribute name="settlementId" type="String" />
+	<aura:attribute name="paymentType" type="String"/>
+	<aura:attribute name="sourceType" type="String"/>
+	<aura:attribute name="columns" type="List"/>
+	<aura:attribute name="readOnlyColumns" type="List"/>
+	<aura:attribute name="label" type="String"/>
+	<aura:attribute name="keyField" type="String"/>
+	<aura:attribute name="subtotal" type="Decimal" default="0.00"/>
+	<aura:attribute name="payments" type="Object"/>
+	<aura:attribute name="previousPayments" type="Object"/>
+	<aura:attribute name="selectedRows" type="List"/>
+	<aura:attribute name="errors" type="Object" default="[]" />
+	<aura:attribute name="hideCheckboxColumn" type="Boolean" default="false"/>
+	<aura:attribute name="resetSelectedRows" type="Boolean" default="false"/>
+	<aura:attribute name="draftValues" type="List"/>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	
+	<lightning:card>
+		<aura:set attribute="title">
+			<lightning:icon iconName="standard:orders" size="small"/>
+			<ui:outputText class="slds-text-heading_small" value="{! v.label }"/>	
+		</aura:set>
+		<aura:set attribute="footer">
+			<lightning:layout horizontalAlign="space">
+				<lightning:layoutItem padding="around-small">
+					<div class="header-column">
+						<ui:outputText value="Payment SubTotal: "/> <ui:outputCurrency value="{!v.subtotal}"/>
+					</div>
+				</lightning:layoutItem>
+			</lightning:layout>
+		</aura:set>
+	
+		<lightning:card>
+			<aura:set attribute="title">
+				<ui:outputText class="slds-text-heading_small" value="{! 'Eligible ' + v.label + ' Payments'}"/>	
+			</aura:set>
+		<lightning:datatable
+			data="{!v.payments}"
+			columns="{!v.columns}"
+			keyField="{!v.keyField}"
+			errors="{!v.errors}"
+			hideCheckboxColumn="{!v.hideCheckboxColumn}"
+			onrowselection="{!c.handleRowAction}" 
+			onheaderaction="{!c.handleRowAction}" 
+			selectedRows="{!v.selectedRows}"
+			draftValues="{!v.draftValues}"
+			oncellchange="{!c.handleCellChange}"
+			resizeColumnDisabled="true"
+			onsave="{!c.handleSave}"
+			showRowNumberColumn="false"
+		/>
+		</lightning:card>
+		<lightning:card>
+			<aura:set attribute="title">
+				<ui:outputText class="slds-text-heading_small" value="{! 'Previous ' + v.label + ' Payments'}"/>	
+			</aura:set>
+		<lightning:datatable
+			data="{!v.previousPayments}"
+			columns="{!v.readOnlyColumns}"
+			keyField="{!v.keyField}"
+			errors="{!v.errors}"
+			hideCheckboxColumn="true"
+			resizeColumnDisabled="true"
+			showRowNumberColumn="true"
+		/>
+	</lightning:card>
+	</lightning:card>
+</aura:component>
